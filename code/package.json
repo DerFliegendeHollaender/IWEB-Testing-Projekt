@@ -1,0 +1,18 @@
+{
+  "name": "code",
+  "version": "1.0.0",
+  "description": "IWEB Projekt. Eine Single-Page anwendung, bei der man Filme ausleihen, die Beschreibung lesen & Filme hinzufügen  kann.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "backend": "node index.js",
+    "dev-be": "nodemon index.js"
+  },
+  "author": "Bleron Regja",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^8.0.0",
+    "nodemon": "^3.0.1"
+  }
+}

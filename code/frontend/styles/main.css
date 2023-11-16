@@ -1,0 +1,28 @@
+body {
+  background: rgb(255, 111, 0);
+  font-family: sans-serif;
+}
+h1 {
+  color: white;
+}
+#data {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+}
+.movie {
+  background: white;
+  border-radius: 50px;
+  border: solid black;
+  height: 400px;
+  width: 340px;
+}
+h3 {
+  margin: 25px;
+  font-size: 30px;
+}
+img {
+  margin-left: 70px;
+  height: 270px;
+  width: 200px;
+}
