@@ -26,3 +26,6 @@ img {
   height: 270px;
   width: 200px;
 }
+.selected {
+  background-color: red;
+}

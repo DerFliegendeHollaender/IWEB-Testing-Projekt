@@ -13,7 +13,8 @@ Content-Type: application/json
     "genre": "Action, Adventure, Drama",
     "director": "Anthony Russo, Joe Russo",
     "actors": "Robert Downey Jr., Chris Evans, Mark Ruffalo, Chris Hemsworth",
-    "description": "After the devastating events of Avengers: Infinity War (2018), the universe is in ruins. With the help of remaining allies, the Avengers assemble once more in order to reverse Thanos' actions and restore balance to the universe."
+    "description": "After the devastating events of Avengers: Infinity War (2018), the universe is in ruins. With the help of remaining allies, the Avengers assemble once more in order to reverse Thanos' actions and restore balance to the universe.",
+    "asset": "./../assets/endgame.jpg"
 }
 
 ###
@@ -27,8 +28,8 @@ Content-Type: application/json
     "genre": "Drama, Sport",
     "director": "Steven Caple Jr.",
     "actors": "Michael B. Jordan, Sylvester Stallone, Tessa Thompson, Phylicia Rashad",
-    "description": "Under the tutelage of Rocky Balboa, newly crowned heavyweight champion Adonis Creed faces off against Viktor Drago, the son of Ivan Drago."
-    
+    "description": "Under the tutelage of Rocky Balboa, newly crowned heavyweight champion Adonis Creed faces off against Viktor Drago, the son of Ivan Drago.",
+    "asset": "./../assets/creed2.jpg"
 }
 
 ###
@@ -42,7 +43,8 @@ Content-Type: application/json
     "genre": "Comedy",
     "director": "Dennis Dugan",
     "actors": "Adam Sandler, Kevin James, Chris Rock, David Spade",
-    "description": "After moving his family back to his hometown to be with his friends and their kids, Lenny finds out that between old bullies, new bullies, schizo bus drivers, drunk cops on skis, and four hundred costumed party crashers sometimes crazy follows you."
+    "description": "After moving his family back to his hometown to be with his friends and their kids, Lenny finds out that between old bullies, new bullies, schizo bus drivers, drunk cops on skis, and four hundred costumed party crashers sometimes crazy follows you.",
+    "asset": "./../assets/grownups2.jpg"
 }
 
 ###
@@ -56,7 +58,8 @@ Content-Type: application/json
     "genre": "Action, Crime, Drama",
     "director": "Christopher Nolan",
     "actors": "Christian Bale, Heath Ledger, Aaron Eckhart, Michael Caine",
-    "description": "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice."
+    "description": "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.",
+    "asset": "./../assets/darkknight.jpg"
 }
 
 ###

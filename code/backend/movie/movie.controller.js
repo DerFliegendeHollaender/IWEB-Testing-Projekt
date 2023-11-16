@@ -16,6 +16,7 @@ async function createMovie(request, response) {
     director: request.body.director,
     actors: request.body.actors,
     description: request.body.description,
+    asset: request.body.asset,
   }).then((Movie) => {
     response.json(Movie);
   });
