@@ -29,6 +29,10 @@ const movieSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  belongsToMyCollection: {
+    type: Boolean,
+    required: true,
+  },
 });
 
 const model = mongoose.model("movies", movieSchema);

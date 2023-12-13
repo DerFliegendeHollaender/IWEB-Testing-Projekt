@@ -17,44 +17,39 @@ async function createMovie(request, response) {
     actors: request.body.actors,
     description: request.body.description,
     asset: request.body.asset,
+    belongsToMyCollection: request.body.belongsToMyCollection,
   }).then((Movie) => {
     response.json(Movie);
   });
 }
 
-async function removeMovie(request, response) {
-  const MovieId = request.params.id;
-  await Movie.findById(MovieId)
+async function checkThatMovieExists(movie) {
+  const movieId = movie.responsible;
+  return Movie.findById(movieId)
     .exec()
-    .then(async (Movie) => {
-      if (!Movie) {
+    .then((foundMovie) => {
+      if (!foundMovie) {
         return Promise.reject({
-          message: `Movie with id ${MovieId} not found.`,
+          message: `Movie with id ${movieId} does not exist.`,
           status: 404,
         });
       }
-      const foundTodos = await Todo.find({
-        responsible: Movie._id,
-      }).exec();
-      if (foundTodos && foundTodos.length > 0) {
-        return Promise.reject({
-          message: `Todos still assigned to Movie with id ${MovieId}.`,
-          status: 404,
-        });
-      }
-      return Movie.deleteOne();
-    })
-    .then((Movie) => {
-      response.json(Movie);
-    })
-    .catch((error) => {
-      if (error.status) {
-        response.status(error.status);
-      } else {
-        response.status(500);
-      }
-      response.json({ message: error.message });
     });
 }
 
-export { getMovies, createMovie, removeMovie };
+async function updateMovie(request, response) {
+  const updatedMovie = request.body;
+  await checkThatMovieExists(updatedMovie)
+    .then((movie) => {
+      movie.belongsToMyCollection = updatedMovie.belongsToMyCollection;
+      return movie.save();
+    })
+    .then((savedMovie) => {
+      response.json(savedMovie);
+    })
+    .catch((error) => {
+      handleError(error, response);
+    });
+}
+
+export { getMovies, createMovie, updateMovie };
