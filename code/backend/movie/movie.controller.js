@@ -24,7 +24,7 @@ async function createMovie(request, response) {
 }
 
 async function checkThatMovieExists(movie) {
-  const movieId = movie.responsible;
+  const movieId = movie._id;
   return Movie.findById(movieId)
     .exec()
     .then((foundMovie) => {
@@ -33,12 +33,13 @@ async function checkThatMovieExists(movie) {
           message: `Movie with id ${movieId} does not exist.`,
           status: 404,
         });
-      }
+      } else return foundMovie;
     });
 }
 
 async function updateMovie(request, response) {
   const updatedMovie = request.body;
+  console.log(updatedMovie.belongsToMyCollection);
   await checkThatMovieExists(updatedMovie)
     .then((movie) => {
       movie.belongsToMyCollection = updatedMovie.belongsToMyCollection;
@@ -48,7 +49,10 @@ async function updateMovie(request, response) {
       response.json(savedMovie);
     })
     .catch((error) => {
-      handleError(error, response);
+      console.log(error);
+      const statusCode =
+        error.status && Number.isInteger(error.status) ? error.status : 500;
+      response.status(statusCode).json(error);
     });
 }
 

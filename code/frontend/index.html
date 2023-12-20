@@ -8,10 +8,17 @@
   </head>
   <body>
     <h1>Movie Collection</h1>
-    <div class="search" id="search">
-      <input type="text" id="search-input" placeholder="Search..." />
-      <button id="search-btn">Search</button>
+    <div class="nav">
+      <div class="search" id="search">
+        <input type="text" id="search-input" placeholder="Search..." />
+        <button id="search-btn">Search</button>
+      </div>
+      <div class="buttons">
+        <button id="new-movies-btn">New Movies</button>
+        <button id="my-movies-btn">My Movies</button>
+      </div>
     </div>
+    <div id="popup" class="popup hidden"></div>
     <div id="data"></div>
     <script src="scripts/libs/axios.min.js"></script>
     <script type="module" src="scripts/main.js"></script>
