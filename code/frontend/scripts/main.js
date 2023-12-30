@@ -125,18 +125,32 @@ function loadDataIntoPopup(isMyCollection, pressedKey) {
     useThisArray = newMovies;
   }
   const elPopup = document.getElementById("popup");
-  const elH1 = document.createElement("h1");
-  const elH2 = document.createElement("h2");
-  const elP = document.createElement("p");
+  const elXDiv = document.createElement("div");
+  const elTitle = document.createElement("h1");
+  const elYear = document.createElement("h2");
+  const elGenre = document.createElement("h2");
+  const elDirector = document.createElement("h2");
+  const elActors = document.createElement("h2");
+  const elDiscription = document.createElement("p");
   const elImg = document.createElement("img");
   elPopup.innerHTML = "";
-  elH1.textContent = useThisArray[pressedKey - 1].name;
-  elH2.textContent = "Actors: " + myMovies[pressedKey - 1].actors;
-  elP.textContent = useThisArray[pressedKey - 1].description;
+  elTitle.textContent = useThisArray[pressedKey - 1].name;
+  elYear.textContent = "Year: " + useThisArray[pressedKey - 1].year;
+  elGenre.textContent = "Genre: " + useThisArray[pressedKey - 1].genre;
+  elDirector.textContent =
+    "Directors: " + useThisArray[pressedKey - 1].director;
+  elActors.textContent = "Actors: " + myMovies[pressedKey - 1].actors;
+  elDiscription.textContent = useThisArray[pressedKey - 1].description;
   elImg.src = useThisArray[pressedKey - 1].asset;
-  elPopup.appendChild(elH1);
-  elPopup.appendChild(elH2);
-  elPopup.appendChild(elP);
+  elXDiv.textContent = "X";
+  elXDiv.classList.add("x-div");
+  elPopup.appendChild(elXDiv);
+  elPopup.appendChild(elTitle);
+  elPopup.appendChild(elYear);
+  elPopup.appendChild(elGenre);
+  elPopup.appendChild(elDirector);
+  elPopup.appendChild(elActors);
+  elPopup.appendChild(elDiscription);
   elPopup.appendChild(elImg);
   elPopup.classList.toggle("hidden");
 }
