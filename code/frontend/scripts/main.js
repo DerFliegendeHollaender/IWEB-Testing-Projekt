@@ -43,6 +43,10 @@ function loadMovies() {
               elDiv.appendChild(elH3);
               elDiv.appendChild(elImg);
               // elDiv.appendChild(elP);
+              elDiv.addEventListener("click", () => {
+                previousKey = i + 1;
+                loadDataIntoPopup(true, i + 1);
+              });
               elDivMovies.appendChild(elDiv);
             }
             break;
@@ -64,6 +68,10 @@ function loadMovies() {
               elDiv.appendChild(elH3);
               elDiv.appendChild(elImg);
               // elDiv.appendChild(elP);
+              elDiv.addEventListener("click", () => {
+                previousKey = i + 1;
+                loadDataIntoPopup(false, i + 1);
+              });
               elDivMovies.appendChild(elDiv);
             }
             break;
@@ -107,6 +115,8 @@ function removeMovie(NrOfMovie) {
     .then((response) => {
       loadMovies();
     });
+  const elPopup = document.getElementById("popup");
+  elPopup.classList.add("hidden");
 }
 
 function searchMovie() {
@@ -118,7 +128,7 @@ function searchMovie() {
 let previousKey = 0;
 
 function loadDataIntoPopup(isMyCollection, pressedKey) {
-  let useThisArray = myMovies;
+  let useThisArray;
   if (isMyCollection) {
     useThisArray = myMovies;
   } else {
@@ -142,17 +152,22 @@ function loadDataIntoPopup(isMyCollection, pressedKey) {
   elActors.textContent = "Actors: " + myMovies[pressedKey - 1].actors;
   elDiscription.textContent = useThisArray[pressedKey - 1].description;
   elImg.src = useThisArray[pressedKey - 1].asset;
-  elXDiv.textContent = "X";
+  elImg.classList.add("img-pop");
+  elXDiv.textContent = "x";
   elXDiv.classList.add("x-div");
+  elXDiv.addEventListener("click", () => {
+    elPopup.classList.add("hidden");
+  });
   elPopup.appendChild(elXDiv);
+  elPopup.appendChild(elImg);
   elPopup.appendChild(elTitle);
   elPopup.appendChild(elYear);
   elPopup.appendChild(elGenre);
   elPopup.appendChild(elDirector);
   elPopup.appendChild(elActors);
   elPopup.appendChild(elDiscription);
-  elPopup.appendChild(elImg);
-  elPopup.classList.toggle("hidden");
+
+  elPopup.classList.remove("hidden");
 }
 
 function addEventMyCollection(pressedKey) {
@@ -162,8 +177,12 @@ function addEventMyCollection(pressedKey) {
   ) {
     if (pressedKey === "Escape") {
       const elPreviousMovie = document.getElementById("movie" + previousKey);
-      elPreviousMovie.classList.remove("selected");
-      previousKey = 0;
+      const elPopup = document.getElementById("popup");
+      if (elPreviousMovie != null) {
+        elPopup.classList.add("hidden");
+        elPreviousMovie.classList.remove("selected");
+        previousKey = 0;
+      }
     } else {
       if (
         previousKey >= 1 &&
@@ -174,12 +193,15 @@ function addEventMyCollection(pressedKey) {
         elPreviousMovie.classList.remove("selected");
       }
       const elDivMovie = document.getElementById("movie" + pressedKey);
-      if (elDivMovie.classList.contains("selected")) {
-        elDivMovie.classList.remove("selected");
-        previousKey = 0;
-      } else {
-        elDivMovie.classList.add("selected");
-        previousKey = pressedKey;
+      if (elDivMovie != null) {
+        // Check if elDivMovie is not null
+        if (elDivMovie.classList.contains("selected")) {
+          elDivMovie.classList.remove("selected");
+          previousKey = 0;
+        } else {
+          elDivMovie.classList.add("selected");
+          previousKey = pressedKey;
+        }
       }
 
       loadDataIntoPopup(true, pressedKey);
@@ -194,8 +216,12 @@ function addEventNewMovies(pressedKey) {
   ) {
     if (pressedKey === "Escape") {
       const elPreviousMovie = document.getElementById("movie" + previousKey);
-      elPreviousMovie.classList.remove("selected");
-      previousKey = 0;
+      const elPopup = document.getElementById("popup");
+      if (elPreviousMovie != null) {
+        elPopup.classList.add("hidden");
+        elPreviousMovie.classList.remove("selected");
+        previousKey = 0;
+      }
     } else {
       if (
         previousKey >= 1 &&
@@ -206,12 +232,15 @@ function addEventNewMovies(pressedKey) {
         elPreviousMovie.classList.remove("selected");
       }
       const elDivMovie = document.getElementById("movie" + pressedKey);
-      if (elDivMovie.classList.contains("selected")) {
-        elDivMovie.classList.remove("selected");
-        previousKey = 0;
-      } else {
-        elDivMovie.classList.add("selected");
-        previousKey = pressedKey;
+      if (elDivMovie != null) {
+        // Check if elDivMovie is not null
+        if (elDivMovie.classList.contains("selected")) {
+          elDivMovie.classList.remove("selected");
+          previousKey = 0;
+        } else {
+          elDivMovie.classList.add("selected");
+          previousKey = pressedKey;
+        }
       }
     }
   }

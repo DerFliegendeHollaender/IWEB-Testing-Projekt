@@ -7,7 +7,9 @@ h1 {
 }
 #data {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
+  justify-content: space-around;
   gap: 40px;
 }
 .movie {
@@ -16,6 +18,7 @@ h1 {
   border: solid black;
   height: 400px;
   width: 340px;
+  cursor: pointer;
 }
 h3 {
   margin: 25px;
@@ -40,8 +43,27 @@ img {
   border: 5px solid black;
   border-radius: 50px;
   transition: opacity 0.3s, visibility 0.3s;
+  height: auto;
+  width: auto;
 }
 
 .popup h1 {
   color: black;
+  display: block;
+}
+.x-div {
+  float: right;
+  margin-right: 20px;
+  margin-top: 10px;
+  font-size: 30px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.img-pop {
+  height: 300px;
+  width: 230px;
+
+  float: right;
+  margin-top: 50px;
+  margin-right: 10px;
 }

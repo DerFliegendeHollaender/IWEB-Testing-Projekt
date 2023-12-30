@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 
 const app = express();
 
-mongoose.connect("mongodb://localhost/movies-collection");
+mongoose.connect("mongodb://127.0.0.1/movies-collection");
 
 app.use(express.static("frontend"));
 
