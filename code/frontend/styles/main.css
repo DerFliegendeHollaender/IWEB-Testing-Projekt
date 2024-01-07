@@ -46,10 +46,18 @@ img {
   height: auto;
   width: auto;
 }
-
+.info-popup {
+  margin-left: 20px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
 .popup h1 {
   color: black;
   display: block;
+}
+.popup h2 {
+  margin-top: 0px;
+  margin-bottom: 10px;
 }
 .x-div {
   float: right;

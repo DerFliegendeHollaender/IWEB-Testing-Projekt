@@ -8,94 +8,101 @@ function loadMovies() {
   newMovies = [];
   let myMoviesCycle = 0;
   let newMoviesCycle = 0;
-  axios.get("http://localhost:3001/api/movie").then((response) => {
-    const movies = response.data;
-    const elDivMovies = document.getElementById("data");
-    elDivMovies.innerHTML = "";
-    if (wholeMovieList.length < 1) {
-      needMoviesToBeLoaded = true;
-    } else {
-      needMoviesToBeLoaded = false;
-    }
-    for (let i = 0; i < movies.length; i++) {
-      if (needMoviesToBeLoaded) {
-        wholeMovieList.push(movies[i]);
-      }
-      const queryString = window.location.search;
-      const urlParams = new URLSearchParams(queryString);
-      if (urlParams.has("belongsToMyCollection")) {
-        switch (urlParams.get("belongsToMyCollection")) {
-          case "true":
-            if (movies[i].belongsToMyCollection == true) {
-              myMoviesCycle += 1;
-              myMovies.push(movies[i]);
-              const elDiv = document.createElement("div");
-              elDiv.setAttribute("id", "movie" + myMoviesCycle);
-              elDiv.classList.add("movie");
-              const elH3 = document.createElement("h3");
-              elH3.classList.add("name");
-              elH3.textContent = movies[i].name;
-              const elImg = document.createElement("img");
-              elImg.src = movies[i].asset;
-
-              // const elP = document.createElement("p");
-              // elP.textContent = movie.description;
-              elDiv.appendChild(elH3);
-              elDiv.appendChild(elImg);
-              // elDiv.appendChild(elP);
-              elDiv.addEventListener("click", () => {
-                previousKey = i + 1;
-                loadDataIntoPopup(true, i + 1);
-              });
-              elDivMovies.appendChild(elDiv);
-            }
-            break;
-          case "false":
-            if (movies[i].belongsToMyCollection == false) {
-              newMoviesCycle += 1;
-              newMovies.push(movies[i]);
-              const elDiv = document.createElement("div");
-              elDiv.setAttribute("id", "movie" + newMoviesCycle);
-              elDiv.classList.add("movie");
-              const elH3 = document.createElement("h3");
-              elH3.textContent = movies[i].name;
-              elH3.classList.add("name");
-              const elImg = document.createElement("img");
-              elImg.src = movies[i].asset;
-
-              // const elP = document.createElement("p");
-              // elP.textContent = movie.description;
-              elDiv.appendChild(elH3);
-              elDiv.appendChild(elImg);
-              // elDiv.appendChild(elP);
-              elDiv.addEventListener("click", () => {
-                previousKey = i + 1;
-                loadDataIntoPopup(false, i + 1);
-              });
-              elDivMovies.appendChild(elDiv);
-            }
-            break;
-        }
+  axios
+    .get("http://localhost:3001/api/movie")
+    .then((response) => {
+      const movies = response.data;
+      const elDivMovies = document.getElementById("data");
+      elDivMovies.innerHTML = "";
+      if (wholeMovieList.length < 1) {
+        needMoviesToBeLoaded = true;
       } else {
-        if (movies[i].belongsToMyCollection == true) {
-          const elDiv = document.createElement("div");
-          elDiv.setAttribute("id", "movie" + i + 1);
-          elDiv.classList.add("movie");
-          const elH3 = document.createElement("h3");
-          elH3.textContent = movies[i].name;
-          const elImg = document.createElement("img");
-          elImg.src = movies[i].asset;
+        needMoviesToBeLoaded = false;
+      }
+      for (let i = 0; i < movies.length; i++) {
+        if (needMoviesToBeLoaded) {
+          wholeMovieList.push(movies[i]);
+        }
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        if (urlParams.has("belongsToMyCollection")) {
+          switch (urlParams.get("belongsToMyCollection")) {
+            case "true":
+              if (movies[i].belongsToMyCollection == true) {
+                myMoviesCycle += 1;
+                myMovies.push(movies[i]);
+                const elDiv = document.createElement("div");
+                elDiv.setAttribute("id", "movie" + myMoviesCycle);
+                elDiv.classList.add("movie");
+                const elH3 = document.createElement("h3");
+                elH3.classList.add("name");
+                elH3.textContent = movies[i].name;
+                const elImg = document.createElement("img");
+                elImg.src = movies[i].asset;
 
-          // const elP = document.createElement("p");
-          // elP.textContent = movie.description;
-          elDiv.appendChild(elH3);
-          elDiv.appendChild(elImg);
-          // elDiv.appendChild(elP);
-          elDivMovies.appendChild(elDiv);
+                // const elP = document.createElement("p");
+                // elP.textContent = movie.description;
+                elDiv.appendChild(elH3);
+                elDiv.appendChild(elImg);
+                // elDiv.appendChild(elP);
+                elDiv.addEventListener("click", () => {
+                  previousKey = i + 1;
+                  loadDataIntoPopup(true, i + 1);
+                });
+                elDivMovies.appendChild(elDiv);
+              }
+              break;
+            case "false":
+              if (movies[i].belongsToMyCollection == false) {
+                newMoviesCycle += 1;
+                newMovies.push(movies[i]);
+                const elDiv = document.createElement("div");
+                elDiv.setAttribute("id", "movie" + newMoviesCycle);
+                elDiv.classList.add("movie");
+                const elH3 = document.createElement("h3");
+                elH3.textContent = movies[i].name;
+                elH3.classList.add("name");
+                const elImg = document.createElement("img");
+                elImg.src = movies[i].asset;
+
+                // const elP = document.createElement("p");
+                // elP.textContent = movie.description;
+                elDiv.appendChild(elH3);
+                elDiv.appendChild(elImg);
+                // elDiv.appendChild(elP);
+                elDiv.addEventListener("click", () => {
+                  previousKey = i + 1;
+                  loadDataIntoPopup(false, i + 1);
+                });
+                elDivMovies.appendChild(elDiv);
+              }
+              break;
+          }
+        } else {
+          if (movies[i].belongsToMyCollection == true) {
+            const elDiv = document.createElement("div");
+            elDiv.setAttribute("id", "movie" + i + 1);
+            elDiv.classList.add("movie");
+            const elH3 = document.createElement("h3");
+            elH3.textContent = movies[i].name;
+            const elImg = document.createElement("img");
+            elImg.src = movies[i].asset;
+
+            // const elP = document.createElement("p");
+            // elP.textContent = movie.description;
+            elDiv.appendChild(elH3);
+            elDiv.appendChild(elImg);
+            // elDiv.appendChild(elP);
+            elDivMovies.appendChild(elDiv);
+          }
         }
       }
-    }
-  });
+    })
+    .catch((error) => {
+      const networkError = new Error("Failed to load Movies");
+      networkError.statusCode = 500;
+      throw networkError;
+    });
 }
 
 function addMovie(NrOfMovie) {
@@ -105,6 +112,11 @@ function addMovie(NrOfMovie) {
     .put(`http://localhost:3001/api/movie/${NrOfMovie - 1}`, movie)
     .then((response) => {
       loadMovies();
+    })
+    .catch((error) => {
+      const networkError = new Error("Failed to add Movie");
+      networkError.statusCode = 500;
+      throw networkError;
     });
 }
 function removeMovie(NrOfMovie) {
@@ -114,6 +126,11 @@ function removeMovie(NrOfMovie) {
     .put(`http://localhost:3001/api/movie/${NrOfMovie - 1}`, movie)
     .then((response) => {
       loadMovies();
+    })
+    .catch((error) => {
+      const networkError = new Error("Failed to remove Movie");
+      networkError.statusCode = 500;
+      throw networkError;
     });
   const elPopup = document.getElementById("popup");
   elPopup.classList.add("hidden");
@@ -136,16 +153,24 @@ function loadDataIntoPopup(isMyCollection, pressedKey) {
   }
   const elPopup = document.getElementById("popup");
   const elXDiv = document.createElement("div");
+  const elInfo = document.createElement("div");
   const elTitle = document.createElement("h1");
   const elYear = document.createElement("h2");
+  const elYearBold = document.createElement("b");
   const elGenre = document.createElement("h2");
+  const elGenreBold = document.createElement("b");
   const elDirector = document.createElement("h2");
+  const elDirectorBold = document.createElement("b");
   const elActors = document.createElement("h2");
+  const elActorsBold = document.createElement("b");
   const elDiscription = document.createElement("p");
   const elImg = document.createElement("img");
   elPopup.innerHTML = "";
+  elInfo.classList.add("info-popup");
   elTitle.textContent = useThisArray[pressedKey - 1].name;
-  elYear.textContent = "Year: " + useThisArray[pressedKey - 1].year;
+  elYearBold.textContent = "Year: ";
+  elYear.appendChild(elYearBold);
+  elYear.textContent = useThisArray[pressedKey - 1].year;
   elGenre.textContent = "Genre: " + useThisArray[pressedKey - 1].genre;
   elDirector.textContent =
     "Directors: " + useThisArray[pressedKey - 1].director;
@@ -158,13 +183,15 @@ function loadDataIntoPopup(isMyCollection, pressedKey) {
   elXDiv.addEventListener("click", () => {
     elPopup.classList.add("hidden");
   });
+
   elPopup.appendChild(elXDiv);
   elPopup.appendChild(elImg);
-  elPopup.appendChild(elTitle);
-  elPopup.appendChild(elYear);
-  elPopup.appendChild(elGenre);
-  elPopup.appendChild(elDirector);
-  elPopup.appendChild(elActors);
+  elInfo.appendChild(elTitle);
+  elInfo.appendChild(elYear);
+  elInfo.appendChild(elGenre);
+  elInfo.appendChild(elDirector);
+  elInfo.appendChild(elActors);
+  elPopup.appendChild(elInfo);
   elPopup.appendChild(elDiscription);
 
   elPopup.classList.remove("hidden");

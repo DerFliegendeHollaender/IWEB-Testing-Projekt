@@ -1,15 +1,13 @@
-const { myFunction } = require("../scripts/main");
+const { loadMovies } = require("./main.js");
 
-describe("myFunction", () => {
-  it("should return true when input is valid", () => {
-    const input = "valid input";
-    const output = myFunction(input);
-    expect(output).toBe(true);
+describe("loadMovies", () => {
+  it("should load movies into wholeMovieList", () => {
+    loadMovies();
+    expect(wholeMovieList.length).toBeGreaterThan(0);
   });
 
-  it("should return false when input is invalid", () => {
-    const input = "invalid input";
-    const output = myFunction(input);
-    expect(output).toBe(false);
+  it("should set needMoviesToBeLoaded to false", () => {
+    loadMovies();
+    expect(needMoviesToBeLoaded).toBe(false);
   });
 });
