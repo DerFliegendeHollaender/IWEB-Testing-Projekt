@@ -8,47 +8,23 @@ import {
 import * as axiosModule from "../scripts/libs/axios.min.js";
 jest.mock("../scripts/libs/axios.min.js");
 
-// Import your main module here
-import "../scripts/main";
-
 function setUpDom() {
   document.body.innerHTML = `
-    <h1>Movie Collection</h1>
-    <div class="nav">
-      <div class="search" id="search">
-        <input type="text" id="search-input" placeholder="Search..." />
-        <button id="search-btn">Search</button>
-      </div>
-      <div class="buttons">
-        <button id="new-movies-btn">New Movies</button>
-        <button id="my-movies-btn">My Movies</button>
-      </div>
+  <h1>Movie Collection</h1>
+  <div class="nav">
+    <div class="search" id="search">
+      <input type="text" id="search-input" placeholder="Search..." />
+      <button id="search-btn">Search</button>
     </div>
-    <div id="popup" class="popup hidden"></div>
-    <div id="data"></div>
-    <div id="notification" class="do-not-display"></div>
-    <div class="input-section">
-      <input type="text" id="vendor" />
-      <input type="text" id="price" />
-      <button id="add-offering">Hinzufügen</button>
-
-      <select id="select-vendor"></select>
-      <input type="text" id="new-price" />
-      <button id="change-price">Ändern</button>
+    <div class="buttons">
+      <button id="new-movies-btn">New Movies</button>
+      <button id="my-movies-btn">My Movies</button>
     </div>
-
-    <table id="price-table">
-      <thead>
-        <tr>
-          <th>Anbieter</th>
-          <th>Preis</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-    <script src="scripts/libs/axios.min.js"></script>
-    <script type="module" src="scripts/main.js"></script>`;
+  </div>
+  <div id="popup" class="popup hidden"></div>
+  <div id="data"></div>
+  <script src="scripts/libs/axios.min.js"></script>
+  <script type="module" src="scripts/main.js"></script>`;
 }
 
 describe("Movie Management", () => {
